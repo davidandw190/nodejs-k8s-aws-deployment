@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-api
+  namespace: staging
+  labels:
+    app: express-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: express-api
+  template:
+    metadata:
+      labels:
+        app: express-api
+    spec:
+      containers:
+      - name: express-api
+        image: 211125497534.dkr.ecr.eu-north-1.amazonaws.com/express-api-deployment:v1
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          requests:
+            memory: 64Mi
+            cpu: 100m
+          limits:
+            memory: 128Mi
+            cpu: 300m
+
+---
