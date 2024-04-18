@@ -26,7 +26,7 @@ spec:
         image: 211125497534.dkr.ecr.eu-north-1.amazonaws.com/express-api-deployment:v1
         ports:
         - name: http
-          containerPort: 8080
+          containerPort: 9090
         resources:
           requests:
             memory: 64Mi
@@ -35,3 +35,15 @@ spec:
             memory: 128Mi
             cpu: 300m
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-api
+  namespace: staging
+spec:
+  selector:
+    app: express-api
+  ports:
+  - protocol: TCP
+    port: 9090
+
