@@ -22,7 +22,7 @@ spec:
         app: express-api
     spec:
       containers:
-      - name: express-api
+      - name: express-api-deployment
         image: 211125497534.dkr.ecr.eu-north-1.amazonaws.com/express-api-deployment:v1
         ports:
         - name: http
