@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: http-express-api
+  namespace: staging
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: express.davidandw190.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: express-api
+          servicePort: 9090
